@@ -5,7 +5,51 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
+<?php
 
+if(isset($_POST["save"]))
+{
+
+    include "config.php";
+
+    
+
+    
+
+
+    $user_fname = $_POST["fname"];
+    $user_lname = $_POST["lname"];
+    $username = $_POST["user"];
+    $user_password = $_POST["password"];
+    $user_role = $_POST["role"];
+
+    $query1 = "SELECT * FROM `user` WHERE `username` = '{$username}'";
+
+    $result = mysqli_query($conn,$query1);
+
+    if(mysqli_num_rows($result)> 0 )
+    {
+        echo '<script>
+        
+        alert("user already exist")
+        
+        </script>';
+        
+        
+        
+      
+    } 
+    else
+    {
+        $query =  "INSERT INTO `user`(`first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$user_fname}','{$user_lname}','{$username}','{$user_password}','{$user_role}')";
+
+        mysqli_query($conn,$query);
+        header("location:http://localhost:82/kstore_2201G1/admin/users.php");
+
+    }
+
+}
+?>
 <?php include "header.php"; ?>
 <div id="admin-content">
     <div class="container">
@@ -46,26 +90,7 @@
                 <!-- Form End-->
 
 
-                <?php
-
-                if(isset($_POST["save"]))
-                {
-
-                    $user_fname = $_POST["fname"];
-                    $user_lname = $_POST["lname"];
-                    $username = $_POST["user"];
-                    $user_password = $_POST["password"];
-                    $user_role = $_POST["role"];
-                     
-                
-                    include "config.php";
-
-                    $query =  "INSERT INTO `user`(`first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$user_fname}','{$user_lname}','{$username}','{$user_password}','{$user_role}')";
-
-                    mysqli_query($conn,$query);
-
-                }
-                ?>
+            
 
 
             </div>
