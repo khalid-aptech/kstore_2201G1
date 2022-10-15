@@ -44,7 +44,7 @@ if(isset($_POST["save"]))
         $query =  "INSERT INTO `user`(`first_name`, `last_name`, `username`, `password`, `role`) VALUES ('{$user_fname}','{$user_lname}','{$username}','{$user_password}','{$user_role}')";
 
         mysqli_query($conn,$query);
-        header("location:http://localhost:82/kstore_2201G1/admin/users.php");
+        header("location:{$host}/admin/users.php");
 
     }
 

@@ -6,7 +6,7 @@ session_start();
 
 if(isset($_SESSION["username"]))
 {
-    header("location:http://localhost:82/kstore_2201G1/admin/products.php");
+    header("location:{$host}/admin/products.php");
 
 }
 
@@ -72,7 +72,7 @@ if(isset($_SESSION["username"]))
                                 $_SESSION["user_id"] = $row["user_id"];
                                 $_SESSION["user_role"] = $row["role"];
 
-                                header("location:http://localhost:82/kstore_2201G1/admin/products.php");
+                                header("location:{$host}/admin/products.php");
 
 
                             }
